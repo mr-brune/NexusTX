@@ -1,7 +1,7 @@
-#include <NexusTX.h>
+#include "NexusTX.h"
 
 
-NexusTX transmitter(4); //4 = data pin
+NexusTX transmitter(15); //15 = data pin
 
 void setup()
 {
@@ -17,6 +17,7 @@ void setup()
 void loop()
 {  
     if (transmitter.transmit()) PrintSentData(transmitter.SendBuffer, transmitter.buffer_size);
+    delay(transmitter.tx_interval); //send messagge every 56.75 seconds
   }
 
 void PrintSentData(bool* SendBuffer, int size) {

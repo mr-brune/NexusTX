@@ -21,6 +21,7 @@ class NexusTX
 
     bool* SendBuffer;
     int buffer_size=36;
+    int tx_interval = TX_INTERVAL;
     NexusTX(byte);
     void setChannel(byte);
     void setId(byte);
