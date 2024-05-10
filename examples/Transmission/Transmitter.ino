@@ -1,4 +1,4 @@
-#include "NexusTX.h"
+#include <NexusTX.h>
 
 
 NexusTX transmitter(15); //15 = data pin
