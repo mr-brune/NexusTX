@@ -65,20 +65,27 @@ for (idx = 0; idx <= 11; idx++)
 }
 }
 
-void NexusTX::SendPacket()
+void NexusTX::SendPacket(bool first)
 {
-    for (int i = 0; i <buffer_size; i++)
+  int i=0;
+
+  if(first){i=4;}
+
+    for (i; i <buffer_size; i++)
     {
         tx_bit(SendBuffer[i]);
     }
 }
 
+
 bool NexusTX::transmit()
 {
-
+  SendPacket(true);
   for (idx = 1; idx < repeat; idx++)
   {
-    SendPacket();
+    SendPacket(false);
+
+    if (idx + 1 == repeat) {break;} // do not send sync after last TX
     // sync bit
     digitalWrite(TX_PIN, HIGH);
     delayMicroseconds(PULSE_HIGH);

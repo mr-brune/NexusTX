@@ -2,6 +2,8 @@
 
 
 NexusTX transmitter(15); //15 = data pin
+unsigned long lastTime1 = 0;
+bool first = true;
 
 void setup()
 {
@@ -12,12 +14,18 @@ void setup()
   transmitter.setTemperature(26.30); 
   transmitter.setHumidity(50);      
   transmitter.setId(12); 
+
 }
 
 void loop()
 {  
+      if ((millis() - lastTime1) > transmitter.tx_interval || first) {
+    // Transmit data
+    lastTime1 = millis();
     if (transmitter.transmit()) PrintSentData(transmitter.SendBuffer, transmitter.buffer_size);
-    delay(transmitter.tx_interval); //send messagge every 56.75 seconds
+    first = false;
+    
+  }
   }
 
 void PrintSentData(bool* SendBuffer, int size) {
