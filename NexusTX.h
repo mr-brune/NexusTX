@@ -11,7 +11,7 @@
 #define TX_INTERVAL 56750
 
 // Bitstream repetition (this device sends the information 10 times)
-#define repeat 9
+#define repeat 12
 
 
 
@@ -35,7 +35,7 @@ class NexusTX
   void tx_bit(bool);
   byte TX_PIN;
   int idx = 0;
-  void SendPacket(bool);
+  void SendPacket();
 
 };
 
