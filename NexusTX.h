@@ -29,13 +29,16 @@ class NexusTX
     void setTemperature(float);
     void setHumidity(int);
     bool transmit();
+    void SendPacket();
     
 
   private:
   void tx_bit(bool);
   byte TX_PIN;
   int idx = 0;
-  void SendPacket();
+  void SendNexus();
+  unsigned long time_marker_send = 0;
+  unsigned long send_time = TX_INTERVAL;
 
 };
 

@@ -65,7 +65,7 @@ for (idx = 0; idx <= 11; idx++)
 }
 }
 
-void NexusTX::SendPacket()
+void NexusTX::SendNexus()
 {
     for (int i=0; i <buffer_size; i++)
     {
@@ -73,13 +73,11 @@ void NexusTX::SendPacket()
     }
 }
 
-
-bool NexusTX::transmit()
+void NexusTX::SendPacket()
 {
   for (idx = 1; idx < repeat; idx++)
   {
-    SendPacket();
-
+    SendNexus();
     if (idx + 1 == repeat) {break;} // do not send sync after last TX
     // sync bit
     digitalWrite(TX_PIN, HIGH);
@@ -87,5 +85,17 @@ bool NexusTX::transmit()
     digitalWrite(TX_PIN, LOW);
     delayMicroseconds(PULSE_SYNC);
   }
-  return true;
 }
+
+
+bool NexusTX::transmit()
+{
+  if (millis() >= time_marker_send && send_time)
+  {
+    time_marker_send = millis() + send_time;
+    SendPacket();
+    return true;
+  }
+  else return false;
+}
+
