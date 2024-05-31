@@ -16,7 +16,6 @@ const char *password = "";
 NexusTX transmitter(15);
 unsigned long timerDelay = 120000;  //ask api every 2 minute
 unsigned long lastTime = 0;
-unsigned long lastTime1 = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -44,11 +43,8 @@ void setup() {
 }
 
 void loop() {
-
-  if ((millis() - lastTime1) > transmitter.tx_interval) {
-    // Transmit data
-    lastTime1 = millis();
-    if (transmitter.transmit()) PrintSentData(transmitter.SendBuffer, transmitter.buffer_size);
+    if (transmitter.transmit()){
+    PrintSentData(transmitter.SendBuffer, transmitter.buffer_size);
     if ((millis() - lastTime) > timerDelay) {
       fetchdata();
       lastTime = millis();
