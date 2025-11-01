@@ -11,7 +11,8 @@
 #define TX_INTERVAL 56750
 
 // Bitstream repetition (this device sends the information 10 times)
-#define repeat 10
+// Bitstream repetition count (how many times the frame is sent)
+static const uint8_t NEXUS_REPEAT = 10;
 
 
 

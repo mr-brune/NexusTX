@@ -128,10 +128,10 @@ void NexusTX::SendNexus()
 
 void NexusTX::SendPacket()
 {
-  for (idx = 1; idx < repeat; idx++)
+  for (idx = 1; idx < NEXUS_REPEAT; idx++)
   {
     SendNexus();
-    if (idx + 1 == repeat) {break;} // do not send sync after last TX
+    if (idx + 1 == NEXUS_REPEAT) {break;} // do not send sync after last TX
     // sync bit
     if (_txWriter) {
       _txWriter(true, _txWriterCtx);
