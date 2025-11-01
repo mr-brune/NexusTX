@@ -11,7 +11,7 @@
 #define TX_INTERVAL 56750
 
 // Bitstream repetition (this device sends the information 10 times)
-#define repeat 12
+#define repeat 10
 
 
 
